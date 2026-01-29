@@ -6,7 +6,7 @@
 /*   By: eboulajd <eboulajd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 11:39:08 by eboulajd          #+#    #+#             */
-/*   Updated: 2026/01/02 16:36:16 by eboulajd         ###   ########.fr       */
+/*   Updated: 2026/01/20 17:09:20 by eboulajd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@ int		reverse_rotate_stack(node **top, node **tail)
 {
 	node	*temp;
 
-	temp = *tail;
-	if (!tail || !(*tail) || !(*tail)->prev)
-		return (0);
-	*tail = temp->prev;
-	temp->next = *top;
-	temp->prev = NULL;
-	(*top)->prev = temp;
-	*top = (*top)->prev;
-	return (1);
+	temp = (*tail);
+	if (!(*top) || (*tail) == (*top))
+		return (1);
+	else
+	{
+		(*top)->prev = temp;
+		temp->next = (*top);
+		(*top) = temp;
+		(*tail) = temp->prev;
+		(*top)->prev = NULL;
+		(*tail)->next = NULL;
+
+	}
+	return (0);
 }

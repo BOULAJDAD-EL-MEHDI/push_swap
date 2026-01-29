@@ -6,13 +6,13 @@
 /*   By: eboulajd <eboulajd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 11:39:24 by eboulajd          #+#    #+#             */
-/*   Updated: 2026/01/01 16:41:16 by eboulajd         ###   ########.fr       */
+/*   Updated: 2026/01/18 13:20:04 by eboulajd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		swap_stack(node	**top)
+int	swap_stack(node	**top)
 {
 	node	*first;
 	node	*second;

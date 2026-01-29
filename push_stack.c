@@ -3,35 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   push_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eboulajd <eboulajd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eboulajd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/01 11:39:02 by eboulajd          #+#    #+#             */
-/*   Updated: 2026/01/04 16:59:59 by eboulajd         ###   ########.fr       */
+/*   Created: 2026/01/20 14:17:31 by eboulajd          #+#    #+#             */
+/*   Updated: 2026/01/20 14:17:38 by eboulajd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	   push_stack(node **top_a, node **tail_a, node **top_b, node **tail_b)
+static void	push_tail(node **top_one, node **tail_one, node **top_two, node **tail_two)
 {
-	node *temp;
+	node	*temp;
 
-	if (!top_a || !(*top_a))
+	temp = (*top_two);
+	(*top_two) = NULL;
+	(*tail_two) = NULL;
+	temp->next = NULL;
+	temp->prev = NULL;
+	if (*top_one)
+	{
+		(*top_one)->prev = temp;
+		temp->next = (*top_one);
+		(*top_one) = temp;
+	}
+	else
+	{
+		(*top_one) = temp;
+		(*tail_one) = temp;
+	}
+}
+
+static void	push_head(node **top_one, node **tail_one, node **top_two)
+{
+	node	*temp;
+
+	temp = (*top_two);
+	(*top_two) = (*top_two)->next;
+	temp->next = NULL;
+	temp->prev = NULL;
+	if (*top_one)
+	{
+		temp->next = (*top_one);
+		(*top_one)->prev = temp;
+		(*top_one) = temp;
+	}
+	else
+	{
+		(*top_one) = temp;
+		(*tail_one) = temp;
+	}
+}
+
+int	push_stack(node **top_one, node **tail_one, node **top_two, node **tail_two)
+{
+	if ((*top_two) == (*tail_two) && (*top_two) == NULL)
 		return (0);
-	temp = *top_a;
-	else if ((*top_a) ==  (tail_b))
-	{
-		*top_a = NULL;
-		*tail_b = NULL;
-	}
+	if ((*top_two) == (*tail_two))
+		push_tail(top_one, tail_one, top_two, tail_two);
 	else
-		(*top_a) = temp->next;
-	if (!top_b || !(*top_a))
-	{
-		(*top_b) = temp;
-		(*tail_b) = temp;
-	}
-	else
-		temp->next = (*top_b);
-		(*top_b) = temp->prev;
+		push_head(top_one, tail_one, top_two);
+	return (1);
 }

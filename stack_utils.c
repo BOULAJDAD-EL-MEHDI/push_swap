@@ -6,11 +6,12 @@
 /*   By: eboulajd <eboulajd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 14:53:43 by eboulajd          #+#    #+#             */
-/*   Updated: 2026/01/02 17:09:26 by eboulajd         ###   ########.fr       */
+/*   Updated: 2026/01/18 19:06:24 by eboulajd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 node*	make_stack_node(int data)
 {

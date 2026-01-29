@@ -6,7 +6,7 @@
 #    By: eboulajd <eboulajd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/01 11:41:32 by eboulajd          #+#    #+#              #
-#    Updated: 2026/01/02 16:34:11 by eboulajd         ###   ########.fr        #
+#    Updated: 2026/01/27 16:35:05 by eboulajd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,15 @@ LIBC = push_stack.c \
 		rrotate_stack.c \
 		sswap_stack.c \
 		stack_utils.c \
-		swap_stack.c
+		swap_stack.c \
+		args_to_int_array.c \
+		check_duplicate.c \
+		ft_split_args.c \
+		ft_strjoin.c \
+		is_valid_args.c \
+		push_array_in_to_stack.c \
+		check_duplicate.c \
+		main.c \
 
 SRCS = ${LIBC}
 

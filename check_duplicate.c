@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_stack.c                                     :+:      :+:    :+:   */
+/*   chek_duplicate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eboulajd <eboulajd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/01 11:39:12 by eboulajd          #+#    #+#             */
-/*   Updated: 2026/01/20 16:34:36 by eboulajd         ###   ########.fr       */
+/*   Created: 2026/01/27 15:28:21 by eboulajd          #+#    #+#             */
+/*   Updated: 2026/01/27 16:27:23 by eboulajd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	rotate_stack(node **top, node **tail)
+int	check_duplicate(int *arr, int size)
 {
-	node	*temp;
+	int	i;
+	int	j;
 
-	temp = (*top);
-	if (!(*top) || (*top) == (*tail))
-		return (1);
-	else
+	i = 0;
+	while (i < size - 1)
 	{
-		(*tail)->next = temp;
-		(*top) = (*top)->next;
-		(*top)->prev = NULL;
-		(*tail) = temp;
-		(*tail)->next = NULL;
+		j = i + 1;
+		while (j < size)
+		{
+			if (arr[i] == arr[j])
+				return (1);
+			j++;
+		}
+		i++;
 	}
 	return (0);
 }
