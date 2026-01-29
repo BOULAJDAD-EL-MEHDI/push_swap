@@ -24,7 +24,7 @@ int	just_spaces(char *argv)
 
 	i = 0;
 	if (!argv)
-		return (0);
+	return (0);
 	while (argv[i])
 	{
 		if (argv[i] != ' ')

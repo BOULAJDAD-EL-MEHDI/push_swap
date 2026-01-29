@@ -97,30 +97,51 @@ int push_args_to_stack(node **stack, int *arr, int size)
 	return (1);
 }
 
+void	set_ptrs_to_null(node **stack_a_top, node **stack_a_tail, node **stack_b_top, node **stack_b_tail)
+{
+	*stack_a_top = NULL;
+	*stack_a_tail = NULL;
+	*stack_b_top = NULL;
+	*stack_b_tail = NULL;
+}
+
+void	error_exit(void)
+{
+	write(2, "Error\n", 6);
+	exit(1);
+}
+
+void	parcing(int argc, char **argv, int **arr, int *size)
+{
+	if (argc < 2 || !check_args(argc, argv, arr, size))
+		error_exit();
+}
+
+void	check_push_to_stack(node **stack_a, int *arr, int size)
+{
+	if (!push_args_to_stack(stack_a, arr, size))
+	{
+		free(arr);
+		error_exit();
+	}
+}
+
 int main(int argc, char **argv)
 {
-	int *arr;
-	int size;
-	node *stack_a;
+	node	*stack_a_top;
+	node	*stack_b_top;
+	node	*stack_a_tail;
+	node	*stack_b_tail;
+	int		*arr;
+	int		size;
 
 	arr = NULL;
 	size = 0;
-	stack_a = NULL;
-	if (argc < 2)
-		return (0);
-	if (!check_args(argc, argv, &arr, &size))
-	{
-		write(2, "Error\n", 6);
-		return (1);
-	}
-	if (!push_args_to_stack(&stack_a, arr, size))
-	{
-		free(arr);
-		write(2, "Error\n", 6);
-		return (1);
-	}
-	print_stack(stack_a);
+	set_ptrs_to_null(&stack_a_top, &stack_a_tail, &stack_b_top, &stack_b_tail);
+	parcing(argc, argv, &arr, &size);
+	check_push_to_stack(&stack_a_top, arr, size);
+	print_stack(stack_a_top);
 	free(arr);
-	free_stack(stack_a);
+	free_stack(stack_a_top);
 	return (0);
 }
