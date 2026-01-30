@@ -6,7 +6,7 @@
 /*   By: eboulajd <eboulajd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 20:16:27 by eboulajd          #+#    #+#             */
-/*   Updated: 2026/01/28 17:34:10 by eboulajd         ###   ########.fr       */
+/*   Updated: 2026/01/30 17:24:48 by eboulajd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void print_stack(node *stack)
 {
 	while (stack)
 	{
-		printf("%d\n", stack->data);
+		printf("data :%d  |index : %d\n", stack->data, stack->index);
 		stack = stack->next;
 	}
 }
@@ -126,6 +126,16 @@ void	check_push_to_stack(node **stack_a, int *arr, int size)
 	}
 }
 
+void printnode(node *a)
+{
+	while(a)
+	{
+		printf("%d->", a->data);
+		a = a->next;
+	}
+	printf("NULL");
+}
+
 int main(int argc, char **argv)
 {
 	node	*stack_a_top;
@@ -140,6 +150,9 @@ int main(int argc, char **argv)
 	set_ptrs_to_null(&stack_a_top, &stack_a_tail, &stack_b_top, &stack_b_tail);
 	parcing(argc, argv, &arr, &size);
 	check_push_to_stack(&stack_a_top, arr, size);
+	printnode(stack_a_top);
+	indexing(stack_a_top);
+	sort_stack(&stack_a_top, &stack_a_tail, &stack_b_top, &stack_b_tail);
 	print_stack(stack_a_top);
 	free(arr);
 	free_stack(stack_a_top);

@@ -6,56 +6,63 @@
 #    By: eboulajd <eboulajd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/01 11:41:32 by eboulajd          #+#    #+#              #
-#    Updated: 2026/01/27 16:35:05 by eboulajd         ###   ########.fr        #
+#    Updated: 2026/01/30 17:20:21 by eboulajd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIB = push_swap.a
-
+# Compiler and flags
 CC = cc
-
-LIBH = push_swap.h
-
 CFLAGS = -Wall -Wextra -Werror
 
-LIBC = push_stack.c \
-		reverse_rotate_stack.c \
-		rotate_stack.c \
-		rreverse_rotate_stack.c \
-		rrotate_stack.c \
-		sswap_stack.c \
-		stack_utils.c \
-		swap_stack.c \
-		args_to_int_array.c \
-		check_duplicate.c \
-		ft_split_args.c \
-		ft_strjoin.c \
-		is_valid_args.c \
-		push_array_in_to_stack.c \
-		check_duplicate.c \
-		main.c \
+# Executable
+NAME = push_swap
 
-SRCS = ${LIBC}
+# Header files
+HEADER = push_swap.h
 
-OBJS = ${SRCS:.c=.o}
+# Source files
+SRC = push_stack.c \
+      reverse_rotate_stack.c \
+	  rreverse_rotate_stack.c \
+      rotate_stack.c \
+      rrotate_stack.c \
+      sswap_stack.c \
+      stack_utils.c \
+      swap_stack.c \
+      args_to_int_array.c \
+      check_duplicate.c \
+      ft_split_args.c \
+      ft_strjoin.c \
+      is_valid_args.c \
+      push_array_in_to_stack.c \
+      main.c \
+      indexing.c \
+      chunk_sort.c \
+	  sort.c
 
-%.o: %.c ${LIBH}
-	${CC} ${CFLAGS} -c $< -o $@
+# Object files
+OBJ = $(SRC:.c=.o)
 
-${LIB}: ${OBJS} ${LIBH}
-	ar -rsc ${LIB} ${OBJS}
+# Rules
+all: $(NAME)
 
-all: ${LIB}
+# Compile executable
+$(NAME): $(OBJ)
+	$(CC)  -o $(NAME) $(OBJ)
 
+# Compile .c -> .o
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Remove object files
 clean:
-	rm -f ${OBJS}
+	rm -f $(OBJ)
 
+# Remove object files + executable
 fclean: clean
-	rm -f ${LIB}
+	rm -f $(NAME)
 
+# Rebuild everything
 re: fclean all
 
 .PHONY: all clean fclean re
-
-
-

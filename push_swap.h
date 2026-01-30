@@ -6,7 +6,7 @@
 /*   By: eboulajd <eboulajd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/18 16:07:00 by eboulajd          #+#    #+#             */
-/*   Updated: 2026/01/28 13:35:11 by eboulajd         ###   ########.fr       */
+/*   Updated: 2026/01/30 15:08:24 by eboulajd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ int		*args_to_int_array(char **tokens, int *size);
 char	**ft_split_args(char *s);
 char	*ft_join_args(int argc, char **argv);
 int    args_are_valid(int argc, char **argv);
-
+void	indexing(node *a);
+void sort_stack(node **top_a, node **tail_a, node **top_b, node **tail_b);
+int     stack_size(node *top);
+void    sort_small(node **a, node **ta, node **b, node **tb);
+void    push_chunks(node **a, node **ta, node **b, node **tb, int chunk);
+void    push_back(node **a, node **ta, node **b, node **tb);
+void    chunk_sort(node **a, node **ta, node **b, node **tb);
 
 #endif
